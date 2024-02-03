@@ -1,0 +1,11 @@
+<div class="weather-container">
+    <h1>Current Weather</h1>
+    <div *ngIf="isLoading">Loading...</div>
+    <div *ngIf="error">{{ error }}</div>
+    <div *ngIf="weatherData">
+      <h2>{{ weatherData.name }}</h2>
+      <p>Temperature: {{ weatherData.main.temp }}°C</p>
+      <p>Conditions: {{ weatherData.weather[0].description }}</p>
+      <img [src]="'http://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'" alt="Weather Icon">
+    </div>
+  </div>
