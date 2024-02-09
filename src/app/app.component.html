@@ -1,4 +1,6 @@
 <div *ngIf="weatherData">
+  <h1>Weather</h1>
+  
   <h2>Weather in {{weatherData.name}}</h2>
   <p>Temperature: {{weatherData.main.temp}}°K</p>
   <p>Weather: {{weatherData.weather[0].description}}</p>
