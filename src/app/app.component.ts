@@ -21,21 +21,26 @@ export class AppComponent {
   ngOnInit(): void {
     navigator.geolocation.getCurrentPosition((position) => {
       this.weatherService.getWeatherData(position.coords.latitude, position.coords.longitude)
-  .then((data: any) => {
-    console.log(data);
-    this.weatherData = data;
+        .then((data: any) => {
+          console.log(data);
+          this.weatherData = data;
+          this.updateWeatherElements();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+  }
+
+  private updateWeatherElements(): void {
     const locationElement = document.getElementById('location');
     const temperatureElement = document.getElementById('temperature');
     const descriptionElement = document.getElementById('description');
+
     if (locationElement && temperatureElement && descriptionElement) {
       locationElement.innerText = `Weather in ${this.weatherData.name}`;
       temperatureElement.innerText = `Temperature: ${this.weatherData.main.temp}°K`;
       descriptionElement.innerText = `Weather: ${this.weatherData.weather[0].description}`;
     }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-    });
   }
 }
